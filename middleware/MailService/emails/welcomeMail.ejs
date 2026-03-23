@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Hunt2Cash</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #f0f4f1;
+            font-family: 'DM Sans', Arial, sans-serif;
+            color: #1a1a1a;
+            padding: 40px 16px;
+        }
+
+        .wrapper { max-width: 580px; margin: 0 auto; }
+
+        .topbar {
+            background: linear-gradient(90deg, #0F3D2E, #0B5D3B, #E6A800, #0B5D3B, #0F3D2E);
+            height: 5px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #d8e8df;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(15, 61, 46, 0.10);
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(145deg, #0F3D2E 0%, #0B5D3B 100%);
+            padding: 44px 40px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: rgba(230, 168, 0, 0.06);
+            pointer-events: none;
+        }
+
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(230, 168, 0, 0.15);
+            border: 1px solid rgba(230, 168, 0, 0.3);
+            color: #E6A800;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .logo-dot { width: 5px; height: 5px; border-radius: 50%; background: #E6A800; }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .header h1 .name { color: #E6A800; }
+        .header-sub { color: rgba(255,255,255,0.5); font-size: 13px; }
+
+        .content { padding: 36px 40px 32px; }
+
+        .greeting {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.85;
+            margin-bottom: 28px;
+            padding-left: 14px;
+            border-left: 3px solid #E6A800;
+        }
+
+        .greeting strong { color: #0F3D2E; }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #bbb;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .bank-bonus-card {
+            background: linear-gradient(135deg, #0F3D2E 0%, #0B5D3B 100%);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bank-bonus-card::after {
+            content: '₦';
+            position: absolute;
+            right: 24px; top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            color: rgba(230, 168, 0, 0.10);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .bonus-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(230, 168, 0, 0.65);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .bonus-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            color: #E6A800;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .bonus-amount .tag {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .bonus-desc { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 5px; }
+
+        .crypto-bonus-card {
+            background: #f7faf8;
+            border: 1px solid #c5dfcf;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+
+        .crypto-bonus-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #0B5D3B;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .coin-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #ffffff;
+            border: 1px solid #e5efea;
+            border-radius: 9px;
+            margin-bottom: 7px;
+        }
+
+        .coin-row:last-of-type { margin-bottom: 0; }
+
+        .coin-left { display: flex; align-items: center; gap: 10px; }
+
+        .coin-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .coin-name { font-size: 12px; font-weight: 600; color: #0F3D2E; }
+        .coin-ticker { font-size: 10px; color: #bbb; }
+
+        .coin-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .crypto-hint {
+            font-size: 11px;
+            color: #999;
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e8f0eb;
+            line-height: 1.6;
+        }
+
+        .crypto-hint strong { color: #0F3D2E; }
+
+        /* FEATURES */
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #666;
+            padding: 12px 14px;
+            background: #f7faf8;
+            border: 1px solid #e5efea;
+            border-radius: 9px;
+        }
+
+        .feature-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: #0F3D2E;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .feature-text strong { color: #0F3D2E; font-size: 12px; font-weight: 600; }
+        .feature-text span { font-size: 11px; color: #aaa; margin-left: 4px; }
+
+        /* CTA */
+        .cta-wrap { text-align: center; margin-bottom: 4px; }
+
+        .cta-btn {
+            display: inline-block;
+            background: #0F3D2E;
+            color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 9px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #E6A800, #f5c842);
+        }
+
+        .cta-note { font-size: 11px; color: #ccc; margin-top: 10px; }
+
+        /* FOOTER */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d8e8df, transparent);
+            margin: 0 32px;
+        }
+
+        .footer { padding: 22px 40px; text-align: center; background: #fafcfb; }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0F3D2E;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand-dot { width: 5px; height: 5px; border-radius: 50%; background: #E6A800; }
+        .footer p { font-size: 11px; color: #bbb; line-height: 1.9; }
+        .footer a { color: #0B5D3B; text-decoration: none; font-weight: 500; }
+
+        .bottombar {
+            background: linear-gradient(90deg, #0F3D2E, #0B5D3B, #E6A800, #0B5D3B, #0F3D2E);
+            height: 4px;
+            border-radius: 0 0 3px 3px;
+            margin-top: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar"></div>
+
+        <div class="card">
+
+            <div class="header">
+                <div class="logo-mark">
+                    <div class="logo-dot"></div>
+                    Hunt2Cash
+                </div>
+                <h1>Welcome, <span class="name"><%= firstName %>!</span></h1>
+                <p class="header-sub">Your account is live. Let's grow your wealth.</p>
+            </div>
+
+            <div class="content">
+
+                <p class="greeting">
+                    Hi <strong><%= firstName %></strong>, your <strong>Hunt2Cash</strong> account is ready.
+                    We've loaded your wallet with bonuses to get you started immediately.
+                </p>
+
+                <div class="section-label">🎁 Welcome Bonuses</div>
+
+                <div class="bank-bonus-card">
+                    <div class="bonus-label">🏦 Bank Balance</div>
+                    <div class="bonus-amount">₦<%= user.bankBalance.toLocaleString() %><span class="tag">credited</span></div>
+                    <div class="bonus-desc">Available instantly in your bank balance.</div>
+                </div>
+
+                <div class="crypto-bonus-card">
+                    <div class="crypto-bonus-label">₿ Crypto Wallet</div>
+
+                    <div class="coin-row">
+                        <div class="coin-left">
+                            <div class="coin-icon" style="background:#F7931A12;border:1px solid #F7931A25;color:#F7931A;">₿</div>
+                            <div><div class="coin-name">Bitcoin</div><div class="coin-ticker">BTC</div></div>
+                        </div>
+                        <div class="coin-amount" style="color:#F7931A;"> <%= user.cryptoWallet.btc.balance %> BTC</div>
+                    </div>
+
+                    <div class="coin-row">
+                        <div class="coin-left">
+                            <div class="coin-icon" style="background:#627EEA12;border:1px solid #627EEA25;color:#627EEA;">Ξ</div>
+                            <div><div class="coin-name">Ethereum</div><div class="coin-ticker">ETH</div></div>
+                        </div>
+                        <div class="coin-amount" style="color:#627EEA;"> <%= user.cryptoWallet.eth.balance %> ETH</div>
+                    </div>
+
+                    <div class="coin-row">
+                        <div class="coin-left">
+                            <div class="coin-icon" style="background:#26A17B12;border:1px solid #26A17B25;color:#26A17B;">₮</div>
+                            <div><div class="coin-name">Tether</div><div class="coin-ticker">USDT</div></div>
+                        </div>
+                        <div class="coin-amount" style="color:#26A17B;"> <%= user.cryptoWallet.usdt.balance %> USDT</div>
+                    </div>
+
+                    <p class="crypto-hint">💡 Sell your crypto for <strong>Naira</strong> instantly from your dashboard. 🚀</p>
+                </div>
+
+                <div class="section-label" style="margin-bottom:12px;">What you can do</div>
+                <ul class="feature-list ">
+                    <li>
+                        <div class="feature-icon">🏦</div>
+                        <div class="feature-text"><strong>Instant Transfers</strong> <span>Send & receive with your account number</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text"><strong>Transaction History</strong> <span>Track everything in real time</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">🔐</div>
+                        <div class="feature-text"><strong>Bank-Grade Security</strong> <span>PIN-protected, 24/7</span></div>
+                    </li>
+                </ul>
+
+                <div class="cta-wrap">
+                    <a href="#" class="cta-btn">Go to My Dashboard →</a>
+                    <p class="cta-note">Log in anytime at hunt2cash.com</p>
+                </div>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="footer">
+                <div class="footer-brand">
+                    <div class="footer-brand-dot"></div>
+                    Hunt2Cash
+                </div>
+                <p>
+                    Questions? <a href="mailto:support@hunt2cash.com">support@hunt2cash.com</a><br>
+                    &copy; <%= new Date().getFullYear() %> Hunt2Cash. All rights reserved.<br>
+                    <a href="#">Unsubscribe</a> &middot; <a href="#">Privacy Policy</a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="bottombar"></div>
+    </div>
+</body>
+</html>

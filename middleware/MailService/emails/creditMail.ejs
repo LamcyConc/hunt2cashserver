@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Alert - Hunt2Cash</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #0d0d0d;
+            font-family: 'DM Sans', Arial, sans-serif;
+            color: #f0f0f0;
+            padding: 40px 16px;
+        }
+
+        .wrapper { max-width: 620px; margin: 0 auto; }
+
+        .topbar {
+            background: linear-gradient(90deg, #4CAF50, #81C784, #4CAF50);
+            height: 4px;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .card {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: radial-gradient(ellipse at top left, #0a1e0f 0%, #111 60%);
+            padding: 48px 40px 36px;
+            text-align: center;
+            border-bottom: 1px solid #2a2a2a;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 80% 20%, rgba(76,175,80,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-mark {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a84c, #f5d485);
+            color: #0d0d0d;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 4px;
+            margin-bottom: 28px;
+        }
+
+        .alert-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.12);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p { color: #888; font-size: 14px; }
+
+        .content { padding: 40px 40px 32px; }
+
+        .greeting {
+            font-size: 15px;
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .greeting strong { color: #f0f0f0; }
+
+        .amount-card {
+            background: linear-gradient(135deg, #0a1e0f, #0d2211);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .amount-card::before {
+            content: '💰';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 60px;
+            opacity: 0.06;
+        }
+
+        .amount-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4CAF50;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .amount-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #4CAF50;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .amount-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .details-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .details-title {
+            padding: 14px 20px;
+            background: #1e1e1e;
+            font-size: 11px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid #222;
+        }
+
+        .detail-row:last-child { border-bottom: none; }
+
+        .detail-label {
+            font-size: 12px;
+            color: #555;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            color: #bbb;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #1a1500, #1e1a08);
+            border: 1px solid #c9a84c44;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .balance-label {
+            font-size: 11px;
+            color: #c9a84c;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .balance-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #f5d485;
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2a2a2a, transparent);
+            margin: 0 40px;
+        }
+
+        .footer { padding: 24px 40px; text-align: center; }
+
+        .footer p { font-size: 12px; color: #444; line-height: 1.8; }
+
+        .footer a { color: #c9a84c; text-decoration: none; }
+
+        .footer .brand { color: #666; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+
+        .bottombar {
+            background: linear-gradient(90deg, #4CAF50, #81C784, #4CAF50);
+            height: 3px;
+            border-radius: 0 0 2px 2px;
+            margin-top: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar"></div>
+
+        <div class="card">
+            <div class="header">
+                <div class="logo-mark">Hunt2Cash</div>
+                <div class="alert-icon">📥</div>
+                <h1>You've been <span>Credited!</span></h1>
+                <p>A credit has been made to your Hunt2Cash account.</p>
+            </div>
+
+            <div class="content">
+                <p class="greeting">
+                    Hi <strong><%= firstName %></strong>, your account has just received a credit. Here are the details of the transaction below.
+                </p>
+
+                <div class="amount-card">
+                    <div class="amount-label">Amount Credited</div>
+                    <div class="amount-value">₦<%= amount.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
+                    <div class="amount-desc">Successfully added to your balance</div>
+                </div>
+
+                <div class="details-card">
+                    <div class="details-title">Transaction Details</div>
+                    <div class="detail-row">
+                        <span class="detail-label">From</span>
+                        <span class="detail-value">: <%= senderName %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Reference</span>
+                        <span class="detail-value">: <%= reference %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Description</span>
+                        <span class="detail-value">: <%= description || "—" %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Date & Time</span>
+                        <span class="detail-value">: <%= new Date().toLocaleString("en-NG", { dateStyle: "medium", timeStyle: "short" }) %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value" style="color: #4CAF50; font-weight: bold;">✓ SUCCESS</span>
+                    </div>
+                </div>
+
+                <div class="balance-card">
+                    <div>
+                        <div class="balance-label">New Balance</div>
+                        <div class="balance-value">₦<%= newBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
+                    </div>
+                    <!-- <div style="font-size: 32px; opacity: 0.4;">🏦</div> -->
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="footer">
+                <p class="brand">Hunt2Cash 💲</p>
+                <p>
+                    Not you? <a href="mailto:support@hunt2cash.com">Contact support immediately</a><br>
+                    &copy; <%= new Date().getFullYear() %> Hunt2Cash. All rights reserved.<br>
+                    <a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="bottombar"></div>
+    </div>
+</body>
+</html>
