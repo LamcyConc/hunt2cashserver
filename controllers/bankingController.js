@@ -43,7 +43,7 @@ const transferFunds = async (req, res) => {
         //     return res.status(403).send({ message: "You cannot transfer to a suspended account" })
         // }
 
-        if (sender.accountNumber === recipientAccountNumber) {
+        if (String(sender.accountNumber) === String(recipientAccountNumber)) {
             await session.abortTransaction()
             return res.status(400).send({ message: "You cannot transfer money to yourself" })
         }
@@ -85,7 +85,7 @@ const transferFunds = async (req, res) => {
 
         await session.commitTransaction()
         const debitMailContent = await mailSender('debitMail.ejs', {
-            firstName: sender.firstName, recipientName:`${recipient.firstName} ${recipient.lastName}`, recipientAccount: recipient.accountNumber,
+            firstName: sender.firstName, recipientName: `${recipient.firstName} ${recipient.lastName}`, recipientAccount: recipient.accountNumber,
             reference: transaction[0].reference, description: transaction[0].description, amount, newBalance: sender.bankBalance
         })
 
