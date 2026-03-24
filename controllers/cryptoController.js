@@ -228,10 +228,10 @@ const sellCrypto = async (req, res) => {
 
 
         user.cryptoWallet[cryptoKey].balance -= sellAmount
-        await user.save({ session })
+        await user.save({ session });
 
 
-        exchange.nairaLiquidity -= netNairaAmount
+        exchange.nairaLiquidity = parseFloat(exchange.nairaLiquidity) - parseFloat(netNairaAmount);
 
 
         if (cryptoKey === "btc") exchange.totalBtcReceived += sellAmount
