@@ -43,15 +43,15 @@ const transferFunds = async (req, res) => {
         //     return res.status(403).send({ message: "You cannot transfer to a suspended account" })
         // }
 
+        if (sender.accountNumber === recipientAccountNumber) {
+            await session.abortTransaction()
+            return res.status(400).send({ message: "You cannot transfer money to yourself" })
+        }
+
         const recipient = await UserModel.findOne({ accountNumber: recipientAccountNumber }).session(session)
         if (!recipient) {
             await session.abortTransaction()
             return res.status(404).send({ message: "Recipient account not found" })
-        }
-
-        if (sender.accountNumber === recipientAccountNumber) {
-            await session.abortTransaction()
-            return res.status(400).send({ message: "You cannot transfer money to yourself" })
         }
 
         if (amount <= 0) {
