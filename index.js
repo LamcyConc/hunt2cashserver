@@ -5,6 +5,17 @@ const cors = require("cors")
 const dotenv = require('dotenv');
 dotenv.config();
 
+const corsOptions = {
+    origin: [
+        "https://hunt2cash.vercel.app",
+        "http://localhost:5173", 
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
 app.set("view engine", 'ejs')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -26,25 +37,14 @@ app.use("/api/v1/exchange", ExchangeRouter);
 const { initializeExchange } = require("./controllers/exchangeController");
 const connectDB = require('./config/connectDB');
 
-const corsOptions = {
-    origin: [
-        "https://hunt2cash.vercel.app",
-        "http://localhost:5173", 
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-    optionsSuccessStatus: 200
-};
 
-// For local development only
+
 if (process.env.NODE_ENV !== 'production') {
   app.listen(process.env.PORT || 5020, () => {
     console.log(`Server started successfully`);
   });
 }
 
-// For Vercel serverless
 let isConnected = false;
 
 module.exports = async (req, res) => {
