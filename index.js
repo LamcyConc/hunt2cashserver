@@ -8,7 +8,7 @@ dotenv.config();
 app.set("view engine", 'ejs')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors())
+app.use(cors(corsOptions))
 
 const UserRouter = require('./routers/userRoutes');
 app.use('/api/v1', UserRouter);
@@ -25,6 +25,17 @@ app.use("/api/v1/exchange", ExchangeRouter);
 
 const { initializeExchange } = require("./controllers/exchangeController");
 const connectDB = require('./config/connectDB');
+
+const corsOptions = {
+    origin: [
+        "https://hunt2cash.vercel.app",
+        "http://localhost:5173", 
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
 
 // For local development only
 if (process.env.NODE_ENV !== 'production') {
