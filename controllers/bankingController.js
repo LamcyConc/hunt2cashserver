@@ -96,16 +96,16 @@ const transferFunds = async (req, res) => {
 
 
         let debitOption = {
-            from: process.env.NODE_MAIL,
+            from: `Hunt2Cash <${process.env.NODE_MAIL}>`,
             to: sender.email,
-            subject: `DEBIT ALERT`,
+            subject: `DEBIT ALERT - Transaction Notification`,
             html: debitMailContent,
         };
 
         let creditOption = {
-            from: process.env.NODE_MAIL,
+            from: `Hunt2Cash <${process.env.NODE_MAIL}>`,
             to: recipient.email,
-            subject: `CREDIT ALERT`,
+            subject: `CREDIT ALERT - Transaction Notification`,
             html: creditMailContent,
         };
 
