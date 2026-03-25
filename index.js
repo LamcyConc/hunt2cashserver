@@ -21,6 +21,9 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors(corsOptions))
 
+
+const { apiLimiter } = require('./middleware/rateLimiter');
+app.use(apiLimiter)
 const UserRouter = require('./routers/userRoutes');
 app.use('/api/v1', UserRouter);
 const AdminRouter = require('./routers/adminRoutes');
